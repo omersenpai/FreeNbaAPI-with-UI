@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\obj\\Debug\\net8.0\\compressed\\lcy48gfgva.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\WEBUI.styles.css",
+      "PackagePath": "staticwebassets\\WEBUI.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\wwwroot\\css\\bootstrap\\10 New Nba Hd Wallpapers 1080P FULL HD 1080p For PC Desktop.jpg",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\10 New Nba Hd Wallpapers 1080P FULL HD 1080p For PC Desktop.jpg"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\omers\\source\\repos\\İleriWebFinal\\WEBUI\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WEBUI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.WEBUI.props",
+      "PackagePath": "build\\WEBUI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.WEBUI.props",
+      "PackagePath": "buildMultiTargeting\\WEBUI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.WEBUI.props",
+      "PackagePath": "buildTransitive\\WEBUI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

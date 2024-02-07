@@ -1,0 +1,78 @@
+﻿<style>
+    body {
+        background: linear-gradient(to right, #8793d4, #575757);
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+    .welcome-title {
+        font-size: 36px;
+        color: #44587c;
+        margin-bottom: 20px;
+        transition: color 0.3s ease;
+    }
+
+        .welcome-title:hover {
+            color: #2d4059;
+        }
+
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #555;
+        transition: color 0.3s ease;
+    }
+
+        p:hover {
+            color: #333;
+        }
+
+    .nba-image {
+        max-width: 100%; 
+        border-radius: 10px; 
+        margin-top: 20px; 
+    }
+</style>
+
+
+
+
+<Router AppAssembly="@typeof(App).Assembly" >
+
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <div class="container">
+                <h1 class="welcome-title">Hoş Geldiniz!</h1>
+                <p>
+                    NBA web sitesine hoş geldiniz. Bu web sitesi, NBA oyuncularını, takımlarını ve istatistiklerini görüntülemenize olanak tanır.
+                    Filtreleme seçenekleri kullanarak istediğiniz bilgileri bulabilirsiniz. Keyifli gezinmeler!
+                </p>
+                <img class="nba-image" src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbac2bfe0-2638-4d21-a44f-d51d5acd580f_1980x1320.jpeg" alt="NBA Resmi">
+            </div>
+
+        </LayoutView>
+    </NotFound>
+</Router>

@@ -1,0 +1,139 @@
+﻿@page "/İstatistikler"
+@using System.Text.Json
+@using WEBUI.Pages.Modal
+
+<div class="container">
+    <h1 class="welcome-title">NBA İstatistikler</h1>
+
+    <div class="button-container">
+        <button class="btn" @onclick="GetAllStats">Tüm İstatistikleri Getir</button>
+    </div>
+
+    @if (Stats != null)
+    {
+        <h2>Oyuncu İstatistikleri:</h2>
+        <div class="stats-container">
+            @foreach (var stat in Stats)
+            {
+                <div class="team-card">
+                    <h3>@stat.player.first_name @stat.player.last_name</h3>
+                    <p>
+                        <strong>Puan:</strong> @stat.pts<br />
+                        <strong>Ribaund:</strong> @stat.reb<br />
+                        <strong>Asist:</strong> @stat.ast<br />
+                        <strong>Blok:</strong> @stat.blk<br />
+                        <strong>Defansif Ribaund:</strong> @stat.dreb<br />
+                        <strong>Üçlük Başarı Oranı:</strong> @String.Format("{0:0.00}", stat.fg3_pct * 100)%<br />
+                        <strong>Üçlük Atış Sayısı:</strong> @stat.fg3a<br />
+                        <strong>Üçlük Başarı Sayısı:</strong> @stat.fg3m<br />
+                        <strong>Şut Başarı Oranı:</strong> @String.Format("{0:0.00}", stat.fg_pct * 100)%<br />
+                        <strong>Şut Atış Sayısı:</strong> @stat.fga<br />
+                        <strong>Şut Başarı Sayısı:</strong> @stat.fgm<br />
+                        <strong>Serbest Atış Başarı Oranı:</strong> @String.Format("{0:0.00}", stat.ft_pct * 100)%<br />
+                        <strong>Serbest Atış Atış Sayısı:</strong> @stat.fta<br />
+                        <strong>Serbest Atış Başarı Sayısı:</strong> @stat.ftm<br />
+                        <strong>Oyun Süresi:</strong> @stat.min<br />
+                        <strong>Ofansif Ribaund:</strong> @stat.oreb<br />
+                        <strong>Foul:</strong> @stat.pf<br />
+                        <strong>Top Çalma:</strong> @stat.stl<br />
+                        <strong>Turnover:</strong> @stat.turnover<br />
+                    </p>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+    /* Add your custom styles here */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .welcome-title {
+        font-size: 24px;
+        color: #1b6ec2;
+        margin-bottom: 20px;
+    }
+
+    .button-container {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #1b6ec2;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+    }
+
+        .btn:hover {
+            background-color: #1861ac;
+        }
+
+    .stats-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
+    .team-card {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 15px;
+        background-color: #f8f8f8;
+        transition: background-color 0.3s;
+        width: 300px;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: normal; 
+        text-overflow: ellipsis; 
+    }
+        .team-card:hover {
+            background-color: #eaeaea;
+        }
+</style>
+
+@code {
+    private List<Stat.Datum> Stats = new List<Stat.Datum>();
+
+    private async Task GetAllStats()
+    {
+        var apiUrl = "https://free-nba.p.rapidapi.com/stats?page=0&per_page=25";
+        await FetchStats(apiUrl);
+    }
+
+    private async Task FetchStats(string apiUrl)
+    {
+        try
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "3a939282d6msh8fd2ae1c01713d9p1c39acjsn77c428d1ce64");
+                client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "free-nba.p.rapidapi.com");
+
+                var response = await client.GetStringAsync(apiUrl);
+                var responseData = JsonSerializer.Deserialize<Stat.StatsResponse>(response, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+                Stats = responseData.data;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching stats: {ex.Message}");
+        }
+    }
+}

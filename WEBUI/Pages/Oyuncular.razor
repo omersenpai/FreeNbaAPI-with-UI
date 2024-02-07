@@ -1,0 +1,195 @@
+﻿@page "/Oyuncular"
+@using System.Text.Json
+@using WEBUI.Pages.Modal
+
+<PageTitle>Oyuncular</PageTitle>
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .welcome-title {
+        font-size: 24px;
+        color: #1b6ec2;
+        margin-bottom: 20px;
+    }
+
+    .button-container {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #1b6ec2;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+    }
+
+        .btn:hover {
+            background-color: #1861ac;
+        }
+
+    .players-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+    }
+
+    .player-card {
+        width: 200px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #f8f8f8;
+        transition: background-color 0.3s;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+
+        .player-card:hover {
+            background-color: #eaeaea;
+        }
+</style>
+<div class="container">
+    <h1 class="welcome-title">NBA Oyuncular</h1>
+
+    <div class="button-container">
+        <button class="btn" @onclick="GetAllPlayers">Tüm Oyuncuları Getir</button>
+        <button class="btn" @onclick="OpenModal">Belirli Oyuncuyu Getir</button>
+    </div>
+
+    @if (Players != null)
+    {
+        <h2>Oyuncular:</h2>
+        <div class="players-container">
+            @foreach (var player in Players)
+            {
+                <div class="player-card">
+                    <h3>@($"{player.first_name} {player.last_name}")</h3>
+                    <p>
+                        <strong>Boy:</strong> @($"{player.height_feet} feet {player.height_inches} inches")<br />
+                        <strong>Pozisyon:</strong> @player.position<br />
+                        <strong>Takım:</strong> @player.team.full_name<br />
+                        <strong>Ağırlık:</strong> @($"{player.weight_pounds} pounds")
+                    </p>
+                </div>
+            }
+        </div>
+    }
+
+    @if (SelectedPlayer != null)
+    {
+        <h2>Seçili Oyuncu:</h2>
+        <div class="player-card">
+            <h3>@($"{SelectedPlayer.first_name} {SelectedPlayer.last_name}")</h3>
+            <p>
+                <strong>Boy:</strong> @($"{SelectedPlayer.height_feet} feet {SelectedPlayer.height_inches} inches")<br />
+                <strong>Pozisyon:</strong> @SelectedPlayer.position<br />
+                <strong>Takım:</strong> @SelectedPlayer.team.full_name<br />
+                <strong>Ağırlık:</strong> @($"{SelectedPlayer.weight_pounds} pounds")
+            </p>
+        </div>
+    }
+
+    @if (IsModalOpen)
+    {
+         <Modal>
+            <h3>Oyuncu ID'sini Girin</h3>
+            <input @bind="PlayerIdInput" class="input-field" />
+            <button class="btn" @onclick="GetSpecificPlayers">Getir</button>
+            <button class="btn" @onclick="CloseModal">Kapat</button>
+        </Modal>
+    }
+</div>
+
+
+
+
+
+
+
+@code {
+    private List<Player.Playersinfo> Players;
+    private Player.Playersinfo SelectedPlayer;
+    private bool IsModalOpen = false;
+    private string PlayerIdInput = "";
+
+    private void OpenModal()
+    {
+        IsModalOpen = true;
+    }
+    private void CloseModal()
+    {
+        IsModalOpen = false;
+    }
+
+    private async Task GetAllPlayers()
+    {
+        var apiUrl = "https://free-nba.p.rapidapi.com/players?page=0&per_page=25";
+        await FetchData(apiUrl);
+    }
+
+    private async Task GetSpecificPlayers()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(PlayerIdInput) || !int.TryParse(PlayerIdInput, out int playerId))
+            {
+                
+                CloseModal();
+                return;
+            }
+
+            var apiUrl1 = $"https://free-nba.p.rapidapi.com/players/{playerId}";
+            await FetchSpecificPlayer(apiUrl1);
+            CloseModal();
+        }
+        catch (Exception ex)
+        {
+           
+            Console.WriteLine($"Hata: {ex.Message}");
+            CloseModal();
+        }
+    }
+
+    private async Task FetchData(string apiUrl)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "3a939282d6msh8fd2ae1c01713d9p1c39acjsn77c428d1ce64");
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "free-nba.p.rapidapi.com");
+
+            var response = await client.GetStringAsync(apiUrl);
+            var responseData = JsonSerializer.Deserialize<Player.PlayersResponse>(response, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            Players = responseData.data;
+        }
+    }
+
+    private async Task FetchSpecificPlayer(string apiUrl)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Key", "3a939282d6msh8fd2ae1c01713d9p1c39acjsn77c428d1ce64");
+            client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "free-nba.p.rapidapi.com");
+
+            var response = await client.GetStringAsync(apiUrl);
+            SelectedPlayer = JsonSerializer.Deserialize<Player.Playersinfo>(response, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+        }
+    }
+}

@@ -1,0 +1,51 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = WEBUI
+build_property.RootNamespace = WEBUI
+build_property.ProjectDir = C:\Users\ceren\Desktop\İleriWebFinal\WEBUI\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ceren\Desktop\İleriWebFinal\WEBUI
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ceren/Desktop/İleriWebFinal/WEBUI/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ceren/Desktop/İleriWebFinal/WEBUI/Pages/Oyuncular.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3l1bmN1bGFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ceren/Desktop/İleriWebFinal/WEBUI/Pages/Oyunlar.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcT3l1bmxhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ceren/Desktop/İleriWebFinal/WEBUI/Pages/Takimlar.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGFraW1sYXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ceren/Desktop/İleriWebFinal/WEBUI/Pages/İstatistikler.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcxLBzdGF0aXN0aWtsZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ceren/Desktop/İleriWebFinal/WEBUI/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ceren/Desktop/İleriWebFinal/WEBUI/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-r7bblo4o5v
+
+[C:/Users/ceren/Desktop/İleriWebFinal/WEBUI/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-8ppxo2t0vl
